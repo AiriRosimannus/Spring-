@@ -21,8 +21,6 @@ public class Account {
         this.amount = amount;
     }
 
-    public void put(String accountNr, int amount) {
-    }
 }
 
 
