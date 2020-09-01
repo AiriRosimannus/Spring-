@@ -17,6 +17,35 @@ public class Test2Controller {
     int x = 10;
     int y = 10;
 
+    // sisend on int n; väljund n-is arv jadas
+    // fun(n) = fun(n-1) + fun(n-3)
+    // 0
+    // 1
+    // 1
+    // 1
+    // 2
+    // 3
+    // 4
+    // 6
+    @GetMapping("y4")
+
+    // üks võimalus
+   /* public static int fibonacci(int n) {
+        if (n == 1) {
+            return 0;
+        } else if (n == 2) {
+            return 1;
+        } else if (n == 3) {
+            return 1;
+        } else {
+            return (fibonacci(n - 1) + fibonacci(n - 3));
+
+        }*/
+    public static int fib (int n){
+
+
+    }
+
     @GetMapping("y1")
     public void test1() {
 
@@ -71,16 +100,9 @@ public class Test2Controller {
             System.out.println();
         }
     }
-
-    // sisend on int n; väljund n-is arv jadas
-    // fun(n) = fun(n-1) + fun(n-3)
-    // 0
-    // 1
-    // 1
-    // 1
-    // 2
-    // 3
-    // 4
-    // 6
 }
+
+
+
+
 
