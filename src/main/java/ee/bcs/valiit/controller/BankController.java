@@ -1,6 +1,8 @@
 package ee.bcs.valiit.controller;
 
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
@@ -36,7 +38,7 @@ public class BankController {
 
     }*/
 
-    @GetMapping ("account")  // createaccount http://localhost:8080/account?accountNr=abc&balance=44
+    @GetMapping("account")  // createaccount http://localhost:8080/account?accountNr=abc&balance=44
     public void addaccount(@RequestParam String accountNr, @RequestParam() BigDecimal balance) {
         map.put(accountNr, balance);
     }
@@ -45,4 +47,16 @@ public class BankController {
     public BigDecimal balance(@RequestParam String accountNr) {
         return map.get(accountNr);
     }
+    //depositMoney(String accountNr, amount) | kannab loodud kontole raha
+    //(suurendab kontoga seotud raha muutujat)
+
+
+    //withdrawMoney(String accountNr, amount) | võtab kontolt raha (vähendab
+    //kontol olevat rahasummat)
+
+
+    //transferMoney(String account1, String account2, amount) | kanna raha
+    //esimeselt kontolt teisele kontole
+
+
 }
