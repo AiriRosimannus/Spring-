@@ -3,9 +3,17 @@ package ee.bcs.valiit.controller;
 import java.math.BigDecimal;
 
 public class Account {
-
+    private Long id; // id
     private String accountNr;
     private BigDecimal balance;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getAccountNr() {
         return accountNr;
