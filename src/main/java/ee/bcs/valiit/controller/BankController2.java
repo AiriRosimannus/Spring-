@@ -96,8 +96,9 @@ public class BankController2 {
             System.out.println("Insufficient funds");
         }
 
-        sql = "UPDATE account SET balance = :Balance WHERE account_nr = :accountNumber";
+        sql = "UPDATE accounts SET balance = :Balance WHERE account_nr = :accountNumber";
         paramMap = new HashMap();
+        paramMap.put("accountNumber", fromAccountNr);
         paramMap.put("Balance", result);
         jdbcTemplate.update(sql, paramMap);
 
@@ -108,8 +109,9 @@ public class BankController2 {
 
         result2 = result2 + amount;
 
-        sql = "UPDATE account SET balance = :Balance WHERE account_nr = :accountNumber";
+        sql = "UPDATE accounts SET balance = :Balance WHERE account_nr = :accountNumber";
         paramMap = new HashMap();
+        paramMap.put("accountNumber", toAccountNr);
         paramMap.put("Balance", result2);
         jdbcTemplate.update(sql, paramMap);
     }
