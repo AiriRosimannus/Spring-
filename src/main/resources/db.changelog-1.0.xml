@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet author="authorName" id="changelog-1.0">
+        <createTable tableName="accounts">
+            <column name="id" type="BIGINT">
+                <constraints nullable="true" primaryKey="true" unique="false"/>
+            </column>
+            <column name="account_nr" type="TEXT">
+                <constraints nullable="false" primaryKey="false" unique="false"/>
+            </column>
+            <column name="balance" type="NUMERIC">
+            <constraints nullable="false" primaryKey="false" unique="false"/>
+            </column>
+            <column name="client_id" type="BIGINT">
+            <constraints nullable="false" primaryKey="false" unique="false"/>
+            </column>
+        </createTable>
+        <createTable tableName="client">
+            <column name="id" type="BIGINT">
+                <constraints nullable="true" primaryKey="true" unique="false"/>
+            </column>
+            <column name="first_name" type="TEXT">
+                <constraints nullable="false" primaryKey="false" unique="false"/>
+            </column>
+            <column name="last_name" type="TEXT">
+                <constraints nullable="false" primaryKey="false" unique="false"/>
+            </column>
+        </createTable>
+        <createTable tableName="accounts">
+            <column name="id" type="BIGINT">
+                <constraints nullable="true" primaryKey="true" unique="false"/>
+            </column>
+            <column name="account_nr" type="TEXT">
+                <constraints nullable="false" primaryKey="false" unique="false"/>
+            </column>
+            <column name="balance" type="NUMERIC">
+                <constraints nullable="false" primaryKey="false" unique="false"/>
+            </column>
+            <column name="client_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="false" unique="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

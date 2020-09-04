@@ -6,10 +6,8 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.Map;
 
-
 @Service
 public class AccountServise {
-
 
     @Autowired
     private AccountRepository accountRepository;
@@ -18,7 +16,6 @@ public class AccountServise {
                            Integer balance,
                            Integer client_id) {
         accountRepository.addaccount(accountNr,balance, client_id);
-
     }
 
     public Integer balance(String accountNr) {
@@ -43,7 +40,6 @@ public class AccountServise {
             Integer newBalance= accountBalance - amount;
             accountRepository.updateBalance(accountNr, newBalance);
         }
-
     }
 
     public void transferMoney(String fromAccountNr,

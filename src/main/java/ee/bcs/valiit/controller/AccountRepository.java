@@ -1,6 +1,5 @@
 package ee.bcs.valiit.controller;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -30,8 +29,9 @@ public class AccountRepository {
         Integer result = jdbcTemplate.queryForObject(sql, paramMap, Integer.class);
         return result;
     }
+
     public void updateBalance(String accountNr,
-                                 Integer balance) {
+                              Integer balance) {
         String sql = "UPDATE accounts SET balance = :Amount WHERE account_nr = :accountNumber";
         Map<String, Object> paramMap = new HashMap();
         paramMap.put("accountNumber", accountNr);
@@ -40,5 +40,4 @@ public class AccountRepository {
         //http://localhost:8080/deposit?accountNr=EE123&amount=20
         //Kontroll PGAdminnis SELECT * FROM accounts;
     }
-
 }
