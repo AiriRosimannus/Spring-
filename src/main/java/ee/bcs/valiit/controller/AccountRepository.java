@@ -5,6 +5,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Repository
@@ -39,5 +40,38 @@ public class AccountRepository {
         jdbcTemplate.update(sql, paramMap);
         //http://localhost:8080/deposit?accountNr=EE123&amount=20
         //Kontroll PGAdminnis SELECT * FROM accounts;
+    }
+
+    public void addClient(String firstName, String lastName) {
+        String sql = "INSERT INTO client (first_name, last_name) VALUES (:firstName, :lastName)";
+        Map<String, Object> paramMap = new HashMap();
+        paramMap.put("firstName", firstName);
+        paramMap.put("lastName", lastName);
+        jdbcTemplate.update(sql, paramMap);
+    }
+
+    public void updateTransactions(Integer accountId, Integer amount) {
+        String sql = "INSERT INTO transaction_history (amount, account_id) VALUES (:amount, :accountId)";
+        Map<String, Object> paramMap = new HashMap();
+        paramMap.put("amount", amount);
+        paramMap.put("accountId", accountId);
+        jdbcTemplate.update(sql, paramMap);
+    }
+
+    public Integer getAccountId(String accountNr) {
+        String sql = "SELECT id FROM accounts WHERE account_nr = :accountNumber";
+        Map<String, Object> paramMap = new HashMap();
+        paramMap.put("accountNumber", accountNr);
+        Integer result = jdbcTemplate.queryForObject(sql, paramMap, Integer.class);
+        return result;
+    }
+
+    public List<Transaction> getTransactionHistoryTable(Integer id, Integer accountId, Integer amount) {
+        String sql = "SELECT id, account_id,amount FROM transaction_history WHERE account_id = :accountId";
+        Map<String, Object> paramMap = new HashMap();
+        paramMap.put("id", id);
+        paramMap.put("accountId", accountId);
+        paramMap.put("amount", amount);
+        return jdbcTemplate.query(sql, paramMap, new TransactionRowMapper());
     }
 }

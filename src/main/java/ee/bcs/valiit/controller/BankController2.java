@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -26,7 +27,7 @@ public class BankController2 {
     @GetMapping("getBalance")       // http://localhost:8080/getBalance?accountNr=EE123 võrdub
     // PGAdminnis: SELECT balance FROM accounts WHERE account_nr='EE123';
     public Integer balance(@RequestParam String accountNr) {
-        Integer getBalance=accountServise.balance(accountNr);
+        Integer getBalance = accountServise.balance(accountNr);
         return getBalance;
     }
 
@@ -56,5 +57,11 @@ public class BankController2 {
         accountServise.transferMoney(fromAccountNr, toAccountNr, amount);
 
         //http://localhost:8080/transferMoney?fromAccountNr=EE123&toAccountNr=EE258&amount=30
+    }
+
+    @GetMapping("addClient")
+    public void addClient(@RequestParam String firstName,
+                          @RequestParam String lastName) {
+        accountServise.addClient(firstName, lastName);
     }
 }

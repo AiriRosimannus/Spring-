@@ -4,10 +4,10 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
-    <changeSet author="authorName" id="changelog-1.0">
+    <changeSet author="airi" id="2020-09-07_bank-1.0">
         <createTable tableName="accounts">
-            <column name="id" type="BIGINT">
-                <constraints nullable="true" primaryKey="true" unique="false"/>
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" unique="true"/>
             </column>
             <column name="account_nr" type="TEXT">
                 <constraints nullable="false" primaryKey="false" unique="false"/>
@@ -16,12 +16,12 @@
             <constraints nullable="false" primaryKey="false" unique="false"/>
             </column>
             <column name="client_id" type="BIGINT">
-            <constraints nullable="false" primaryKey="false" unique="false"/>
+                <constraints nullable="false" primaryKey="false" unique="false"/>
             </column>
         </createTable>
         <createTable tableName="client">
-            <column name="id" type="BIGINT">
-                <constraints nullable="true" primaryKey="true" unique="false"/>
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" unique="true"/>
             </column>
             <column name="first_name" type="TEXT">
                 <constraints nullable="false" primaryKey="false" unique="false"/>
@@ -30,19 +30,30 @@
                 <constraints nullable="false" primaryKey="false" unique="false"/>
             </column>
         </createTable>
-        <createTable tableName="accounts">
-            <column name="id" type="BIGINT">
-                <constraints nullable="true" primaryKey="true" unique="false"/>
+        <createTable tableName="transaction_history">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" unique="true"/>
             </column>
-            <column name="account_nr" type="TEXT">
+            <column name="income" type="NUMERIC">
                 <constraints nullable="false" primaryKey="false" unique="false"/>
             </column>
-            <column name="balance" type="NUMERIC">
+            <column name="outcome" type="NUMERIC">
                 <constraints nullable="false" primaryKey="false" unique="false"/>
             </column>
-            <column name="client_id" type="BIGINT">
+            <column name="account_id" type="BIGINT">
                 <constraints nullable="false" primaryKey="false" unique="false"/>
             </column>
         </createTable>
+    </changeSet>
+<changeSet id="2020-09-07_bank-1.1" author="airi">
+    <dropColumn tableName="transaction_history" columnName="outcome"/>
+    <dropColumn tableName="transaction_history" columnName="income"/>
+</changeSet>
+    <changeSet id="2020-09-07_bank-1.2" author="airi">
+        <addColumn tableName="transaction_history">
+            <column name="amount" type="numeric">
+                <constraints nullable="false" primaryKey="false" unique="false"/>
+            </column>
+        </addColumn>
     </changeSet>
 </databaseChangeLog>

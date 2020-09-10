@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Bank</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<h1>Bank</h1>
+<!--<img src=https://i.pinimg.com/originals/cb/e4/eb/cbe4ebd704ad2c76868baa2407020fbb.png/>-->
+
+<p class="test">Get your card balance</p>
+<input id="accountNr" placeholder="Insert your account number"><br>
+<button id="testButton1">
+    Get balance
+</button>
+<br>
+<br>
+<p class="test2">Create new account</p>
+<input id="newAccountNr" placeholder="Insert accountnumber">
+<input id="balance0" placeholder="Insert balance">
+<input id="client_id" placeholder="Insert client id"><br>
+<button id="testButton2">
+    Make account
+</button>
+<br>
+<br>
+<p class="test3">Create a new client</p>
+<input id="firstName" placeholder="Insert your firstname">
+<input id="lastName" placeholder="Insert your lastname">
+<br>
+<button id="testButton3">
+    Create a new client
+</button>
+<br>
+<br>
+<p class="test4">  Make deposit</p>
+<input id="depositAccountNr" placeholder="Insert your account number">
+<input id="depositAmount" placeholder="Insert amount"><br>
+<button id="testButton4">
+    Make deposit
+</button>
+<br>
+<br>
+<p class="test5">  Make withdraw</p>
+<input id="withdrawAccountNr" placeholder="Insert your account number">
+<input id="withdrawAmount" placeholder="Insert amount"><br>
+<button id="testButton5">
+    Make withdraw
+</button>
+<br>
+<br>
+<p class="test6">  Make a transfer</p>
+<input id="fromAccountNr" placeholder="Insert your account number">
+<input id="toAccountNr" placeholder="Insert receiver account number">
+<input id="transferAmount" placeholder="Insert amount"><br>
+<button id="testButton6">
+    Make a transfer
+</button>
+
+<script>
+    let accounNrElement = document.getElementById("accountNr");
+    let button1 = document.getElementById("testButton1");
+    button1.addEventListener('click', function () {
+        fetch("/getBalance?accountNr=" + accounNrElement.value, {
+            method: 'GET',
+            cache: 'no-cache',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        })
+            .then(function (getBalance) {
+                return getBalance.text();
+            })
+            .then(function (jsonData) {
+                console.log(jsonData)
+                document.getElementById("balance").innerHTML = jsonData;
+            })
+            .catch(function (err) {
+                alert("Error");
+            });
+    })
+
+    let newAccountNrElement = document.getElementById("newAccountNr");
+    let balance0Element = document.getElementById("balance0");
+    let client_idElement = document.getElementById("client_id");
+    let button2 = document.getElementById("testButton2");
+    button2.addEventListener('click', function () {
+
+        fetch("/account?accountNr=" + newAccountNrElement.value + "&balance=" + balance0Element.value + "&client_id=" + client_idElement.value, {
+            method: 'GET',
+            cache: 'no-cache',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        })
+            .then(function (response) {
+                alert("New account created");
+            })
+            .catch(function (err) {
+                alert("Error");
+            });
+    })
+    let firstNameElement = document.getElementById("firstName");
+    let lastNameElement = document.getElementById("lastName");
+    let button3 = document.getElementById("testButton3");
+    button3.addEventListener('click', function () {
+        fetch("/addClient?firstName=" + firstNameElement.value + "&lastName=" + lastNameElement.value, {
+            /*       http://localhost:8080/addClient?firstName=Karl&lastName=Kartul*/
+            method: 'GET',
+            cache: 'no-cache',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(function (response) {
+                alert("Thank you! You are registered.");
+            })
+            .catch(function (err) {
+                alert("Error");
+            });
+    })
+
+    let depositAccountNrElement = document.getElementById("depositAccountNr");
+    let depositAmountElement = document.getElementById("depositAmount");
+    let button4 = document.getElementById("testButton4");
+    button4.addEventListener('click', function () {
+
+        fetch("/deposit?accountNr="+ depositAccountNrElement.value + "&amount=" + depositAmountElement.value, {
+            method: 'GET',
+            cache: 'no-cache',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        })
+            .then(function (response) {
+                alert("Done");
+            })
+            .catch(function (err) {
+                alert("Error");
+            });
+    })
+
+    let withdrawAccountNrElement = document.getElementById("withdrawAccountNr");
+    let withdrawAmountElement = document.getElementById("withdrawAmount");
+    let button5 = document.getElementById("testButton5");
+    button5.addEventListener('click', function () {
+
+        fetch("/withdraw?accountNr="+ withdrawAccountNrElement.value + "&amount=" + withdrawAmountElement.value, {
+            method: 'GET',
+            cache: 'no-cache',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        })
+            .then(function (response) {
+                alert("Done");
+            })
+            .catch(function (err) {
+                alert("Error");
+            });
+    })
+    let fromAccountNrElement = document.getElementById("fromAccountNr");
+    let toAccountNrElement = document.getElementById("toAccountNr");
+    let transferAmountElement = document.getElementById("transferAmount");
+    let button6 = document.getElementById("testButton6");
+    button6.addEventListener('click', function () {
+
+        fetch("/transferMoney?fromAccountNr=" + fromAccountNrElement.value +"&toAccountNr=" +  toAccountNrElement.value + "&amount=" + transferAmountElement.value, {
+            method: 'GET',
+            cache: 'no-cache',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        })
+            .then(function (response) {
+                alert("Done");
+            })
+            .catch(function (err) {
+                alert("viga");
+            });
+    })
+</script>
+<p id="balance"></p>
+</body>
+</html>

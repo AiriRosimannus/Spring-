@@ -1,0 +1,25 @@
+body {
+
+    background-image: url("testpilt.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+h1 {
+    color: darkblue;
+    text-align: center;
+    font-family: "Felix Titling";
+    font-size: 60px;
+}
+p {
+    color: -moz-mac-accentdarkestshadow;
+    font-family: "Bell MT";
+    font-size: 130%;
+    font-weight: bold;
+
+}
+input {
+
+}
+button{
+    align: center;
+}
