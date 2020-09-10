@@ -64,4 +64,9 @@ public class BankController2 {
                           @RequestParam String lastName) {
         accountServise.addClient(firstName, lastName);
     }
+    @GetMapping("getTransactionHistoryTable")
+    public List<Transaction> getTransactionHistoryTable(@RequestParam Integer accountId) {
+        List<Transaction> getTransactionHistoryTable=accountServise.getTransactionHistoryTable(accountId);
+        return getTransactionHistoryTable;
+}
 }

@@ -72,8 +72,8 @@ public class AccountServise {
         accountRepository.addClient(firstName, lastName);
     }
 
-    public List<Transaction> getTransactionHistoryTable(Integer id, Integer accountId, Integer amount) {
-        List<Transaction> getTransactionHistoryTable= accountRepository.getTransactionHistoryTable(id, accountId, amount);
+    public List<Transaction> getTransactionHistoryTable(Integer accountId) {
+        List<Transaction> getTransactionHistoryTable= accountRepository.getTransactionHistoryTable(accountId);
         return getTransactionHistoryTable;
     }
 }

@@ -66,12 +66,10 @@ public class AccountRepository {
         return result;
     }
 
-    public List<Transaction> getTransactionHistoryTable(Integer id, Integer accountId, Integer amount) {
+    public List<Transaction> getTransactionHistoryTable(Integer accountId) {
         String sql = "SELECT id, account_id,amount FROM transaction_history WHERE account_id = :accountId";
         Map<String, Object> paramMap = new HashMap();
-        paramMap.put("id", id);
         paramMap.put("accountId", accountId);
-        paramMap.put("amount", amount);
         return jdbcTemplate.query(sql, paramMap, new TransactionRowMapper());
     }
 }
